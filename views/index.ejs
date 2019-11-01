@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="/css/main.css" rel="stylesheet" type="text/css">
+    <title>Image App</title>
+</head>
+<body>
+    <header>
+        <h2>Image App</h2>
+    </header>
+    <main>
+        
+        <% if (images) {%>
+            <% for (let image of images.results) { %>
+                <div class="img-container">
+                    <img src="<%= image.urls.regular%>" alt="">
+                    <div class="img-footer">
+                        <div class="left">
+                            <div class="profile-image">
+                                <img src="<%= image.user.profile_image.large%>" alt="">
+                            </div>
+                            <a href="https://www.instagram.com/<%= image.user.instagram_username%>"><p><%= image.user.name%></p></a>
+                        </div>
+                        <div class="right">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M256 448l-30.164-27.211C118.718 322.442 48 258.61 48 179.095 48 114.221 97.918 64 162.4 64c36.399 0 70.717 16.742 93.6 43.947C278.882 80.742 313.199 64 349.6 64 414.082 64 464 114.221 464 179.095c0 79.516-70.719 143.348-177.836 241.694L256 448z"/></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M132.8 368c-20.2 0-44.8-24.6-44.8-44.8V160h-9.6C61.7 160 48 173.7 48 190.4V464l58.5-58h215.1c16.7 0 30.4-14.1 30.4-30.9V368H132.8z"/><path d="M429.1 48H149.9C130.7 48 115 63.7 115 82.9V309c0 19.2 15.7 35 34.9 35h238.2l75.9 53V82.9c0-19.2-15.7-34.9-34.9-34.9z"/></svg>
+                        </div>
+                    </div>
+                </div>
+            <% } %>
+        <% } else {%>
+            <a href="/image/getImages" id="getImages">Get Images</a>
+        <%}%>
+    </main>
+</body>
+</html>

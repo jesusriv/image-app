@@ -1,0 +1,29 @@
+{
+  "name": "image-splash",
+  "version": "1.0.0",
+  "description": "# Discover new images, and the photgraphers who take them",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jesusriv/image-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jesusriv/image-app/issues"
+  },
+  "homepage": "https://github.com/jesusriv/image-app#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "ejs": "^2.7.1",
+    "express": "^4.17.1",
+    "mongoose": "^5.7.7",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.4",
+    "require": "^2.4.20"
+  }
+}
