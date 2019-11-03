@@ -1,0 +1,12 @@
+<main>
+
+    <form id="tag-form">
+        <p class='form-heading'>Discover images that you love</p>
+        <p class='form-subHeading'>Select from the following tags to customize your dashboard</p>
+        <div class='selection' >
+            <div class="option" (click)="select($event)" *ngFor="let opt of options">{{opt}}</div>
+        </div>
+        <input type="submit" value="Continue">
+    </form>
+
+</main>

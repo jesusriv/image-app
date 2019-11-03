@@ -1,0 +1,33 @@
+:host {width: 136.6rem;}
+main {width: 100%; display: flex; justify-content: center; margin-top: 6rem;}
+
+#tag-form {width: 60rem; height: 50.2rem; background-color: #fff; padding: 6rem; text-align: center;}
+
+.form-heading {font-size: 3.2rem; color: #7c7c7c}
+.form-subHeading {font-size: 1.6rem; color: #7c7c7c; margin-top: 1.6rem;}
+
+.selection {width: 50rem; height: 25rem; display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; margin: 1.2rem auto 0 auto;}
+.option {
+    width: 10rem; 
+    height: 10rem; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    border: 1px solid black;
+    font-size: 1.6rem;
+}
+.option:hover {cursor: pointer;}
+.clicked {background-color: black; color: white;}
+
+input[type="submit"] {
+    width: 48rem; 
+    height: 4.9rem; 
+    background-color: black; 
+    color: white; 
+    border: none;
+    font-size: 1.6rem;  
+}
+
+@media only screen and (min-width: 128rem) {
+    main {width: 128rem}
+}
