@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class HttpService {
-  url: string = "https://api.unsplash.com/search/photos?query=travel";
+  url: string = "https://api.unsplash.com/search/photos?page=1&per_page=50&orientation=landscape&order_by=popular&query=";
   headers: Object = {
     headers: {
     "Authorization": "Client-ID 0050c8dd5d5c6700d604024d74f5533cdaa9f1412cbdcdfa9e1997b7169421cb"
@@ -14,7 +14,8 @@ export class HttpService {
 
   constructor(private _http: HttpClient) { }
 
-  getImages() {
+  getImagesWithQuery(query: string) {
+    this.url += query;
     return this._http.get(this.url, this.headers);
   }
 }

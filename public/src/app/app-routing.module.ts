@@ -6,7 +6,10 @@ import { WelcomeComponent } from './components/welcome/welcome.component';
 
 const routes: Routes = [
   {path: 'images', component: ImagesComponent},
-  {path: 'welcome', component: WelcomeComponent}
+  {path: 'welcome', component: WelcomeComponent},
+  { path: '', pathMatch: 'full', redirectTo: '/welcome' },
+  // the ** will catch anything that did not match any of the above routes
+  { path: '**', component: WelcomeComponent }
 ];
 
 @NgModule({
