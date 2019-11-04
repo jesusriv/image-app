@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpService } from '../../http.service';
+import { Router } from '@angular/router'
+import { StateService } from 'src/app/state.service';
 
 @Component({
   selector: 'app-welcome',
@@ -9,7 +12,7 @@ export class WelcomeComponent implements OnInit {
   options: string[] = [
     'Home', 
     'Fashion', 
-    'Business', 
+    'Make Up', 
     'Gym', 
     'New York', 
     'Technology', 
@@ -17,24 +20,30 @@ export class WelcomeComponent implements OnInit {
     'Outdoors'
   ];
   clickedClass: string  = " clicked";
-  queries: string[];
+  queries: string[] = [];
   clicked = {};
-  constructor() { }
+  constructor(private _http: HttpService, private _router: Router, private _stateService: StateService) { }
 
   ngOnInit() {
   }
 
   select(e: any) {
-    // this.queries.push(e.originalTarget.firstChild.nodeValue);
-    if (!this.clicked[e.originalTarget.className]) {
+    if (!this.clicked[e.originalTarget.firstChild.nodeValue]) {
       e.originalTarget.className += this.clickedClass;
-      this.clicked[e.originalTarget.className] = true;
+      this.clicked[e.originalTarget.firstChild.nodeValue] = true;
+      this.queries.push(e.originalTarget.firstChild.nodeValue);
     } else {
-      this.clicked[e.originalTarget.className] = false;
-      console.log(e.originalTarget.className);
-      console.log(e.originalTarget.className.split(' ').splice(1, 1));
-      console.log(e.originalTarget.className);
+      this.clicked[e.originalTarget.firstChild.nodeValue] = false;
+      e.originalTarget.className = 'option';
+      this.queries.splice(this.queries.indexOf(e.originalTarget.firstChild.nodeValue, 1));
     }
+  }
+
+  send() {
+    this._http.getImagesWithQuery(this.queries.join(', ').toLowerCase()).subscribe(d => {
+      this._stateService.getData(d['results']);
+      this._router.navigate(['/images']);
+    });
   }
 
 }

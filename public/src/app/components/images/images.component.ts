@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { HttpService } from '../../http.service';
+import { StateService } from '../../state.service';
 
 @Component({
   selector: 'app-images',
@@ -9,7 +10,7 @@ import { HttpService } from '../../http.service';
 export class ImagesComponent implements OnInit {
   images: any;
 
-  constructor(private _httpService: HttpService) { }
+  constructor(private _httpService: HttpService, private _stateService: StateService) { }
 
   ngOnInit() {
     if (!this.images) {
@@ -18,9 +19,7 @@ export class ImagesComponent implements OnInit {
   }
 
   getImages() {
-    this._httpService.getImages().subscribe(i => {
-      this.images = i['results'];
-    });
+    this.images = this._stateService.provideData();
   }
 
 }
