@@ -8,6 +8,8 @@ footer nav { justify-content: center; align-items: center; font-size: 1.6rem;}
 
 nav {width: 136.6rem; padding: 0 2.4rem; height: 5rem; align-self: flex-end; display: flex; justify-content: space-between;}
 
+.nav-btns {width: 20rem; display: flex; justify-content: space-around;}
+
 h2 {display: inline-block; font-size: 2.4rem;}
 
 nav a {
@@ -25,6 +27,7 @@ nav a {
     padding: 0 1rem;
 
 }
+#norm {border: none; background-color: rgb(19, 46, 59);}
 
 @media only screen and (min-width: 128rem) {
     nav {width: 128rem;}
