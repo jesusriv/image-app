@@ -9,6 +9,7 @@ import { StateService } from '../../state.service';
 })
 export class ImagesComponent implements OnInit {
   images: any;
+  oneImage: string;
 
   constructor(private _httpService: HttpService, private _stateService: StateService) { }
 
@@ -20,6 +21,15 @@ export class ImagesComponent implements OnInit {
 
   getImages() {
     this.images = this._stateService.provideData();
+  }
+
+  viewImage(e: any) {
+    this.oneImage = e.originalTarget.src;
+    console.log(this.oneImage);
+  }
+
+  close() {
+    this.oneImage = null;
   }
 
 }

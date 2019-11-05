@@ -40,10 +40,22 @@ export class WelcomeComponent implements OnInit {
   }
 
   send() {
-    this._http.getImagesWithQuery(this.queries.join(', ').toLowerCase()).subscribe(d => {
-      this._stateService.getData(d['results']);
+    let page = Math.floor(Math.random() * 100);
+    this._http.getImagesWithQuery(this.queries.join(', ').toLowerCase(), page).subscribe(d => {
+      const newArr = this.shuffle(d['results']);
+      this._stateService.getData(newArr);
       this._router.navigate(['/images']);
     });
+  }
+
+  shuffle(a: Object[]) {
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * i);
+      const temp = a[i];
+      a[i] = a[j];
+      a[j] = temp;
+    }
+    return a;
   }
 
 }

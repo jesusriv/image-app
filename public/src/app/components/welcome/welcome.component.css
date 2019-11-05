@@ -1,5 +1,5 @@
-:host {width: 136.6rem;}
-main {width: 100%; display: flex; justify-content: center; margin-top: 6rem;}
+:host {width: 136.6rem; height: 3.6rem;} 
+main {width: 100%; display: flex; justify-content: center; margin-top: 2.5rem; height: 3.6rem}
 
 #tag-form {width: 60rem; height: 50.2rem; background-color: #fff; padding: 6rem; text-align: center;}
 
@@ -17,17 +17,17 @@ main {width: 100%; display: flex; justify-content: center; margin-top: 6rem;}
     font-size: 1.6rem;
 }
 .option:hover {cursor: pointer;}
-.clicked {background-color: black; color: white;}
+.clicked {background-color: rgb(19, 46, 59); color: white;}
 
 input[type="submit"] {
     width: 48rem; 
     height: 4.9rem; 
-    background-color: black; 
+    background-color: rgb(19, 46, 59); 
     color: white; 
     border: none;
     font-size: 1.6rem;  
 }
 
-@media only screen and (min-width: 128rem) {
-    main {width: 128rem}
+@media only screen and (max-width: 128rem) {
+    :host {width: 128rem}
 }
