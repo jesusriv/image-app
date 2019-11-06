@@ -13,7 +13,7 @@ main {width: 100%; display: flex; justify-content: center; margin-top: 2.5rem; h
     display: flex; 
     justify-content: center; 
     align-items: center; 
-    border: 1px solid black;
+    border: 1px solid rgba(0, 0, 0, 0.555);
     font-size: 1.6rem;
 }
 .option:hover {cursor: pointer;}
@@ -26,8 +26,19 @@ input[type="submit"] {
     color: white; 
     border: none;
     font-size: 1.6rem;  
+    -webkit-appearance: button;
 }
 
 @media only screen and (max-width: 128rem) {
     :host {width: 128rem}
+}
+
+@media only screen and (max-width: 650px) {
+    #tag-form {width: 40rem}
+}
+@media only screen and (max-width: 376px) {
+    #tag-form {width: 93%; padding: 2rem;}
+    input[type="submit"] {width: 93%;}
+    .selection {width: 100%; margin-bottom: .3rem; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); align-items: center;}
+    .option { width: 80%; height: 50%;}
 }

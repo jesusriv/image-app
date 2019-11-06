@@ -46,7 +46,6 @@ img {max-width: 100%;}
     background-color: #fefefe;
     margin: .7rem auto; 
     padding: 1.5rem;
-    border: 1px solid #888;
     width: 45rem;
 }
 
@@ -63,6 +62,10 @@ img {max-width: 100%;}
 }
 .modal-content svg:hover {cursor: pointer;}
 
+@media only screen and (min-width: 1366px) {
+    main {width: 1366px; margin: 0 auto}
+}
+
 @media only screen and (min-width: 500px) {
 
     .img-container {
@@ -75,4 +78,8 @@ img {max-width: 100%;}
         width: max-content;
         margin: 0 auto;
     }
+}
+
+@media only screen and (max-width: 415px) {
+    main {padding: 0}
 }

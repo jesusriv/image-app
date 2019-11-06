@@ -11,6 +11,7 @@ main {
     position: absolute;
     top: 0;
     height: 80vh;
+    flex-direction: column;
 }
 
 .back {
@@ -24,7 +25,7 @@ main {
     background-color: rgba(0, 0, 0, .2);
     z-index: 5;
 }
-
+.form-div {z-index: 10;}
 form {margin-top: -9rem; z-index: 10; display: flex;}
 
 input[type='text'] {
@@ -36,6 +37,35 @@ input[type='text'] {
     font-size: 1.4rem;
     padding-left: 2.8rem;
 }
+#by {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    top: 98%;
+    padding: 0 1rem
+}
+#by a {text-decoration: none; color: white;}
+#by a:hover {cursor: pointer;}
+main p {font-size: 1.25rem; color: white; z-index: 6; font-weight: 500; position: relative; top: 1rem}
 
 svg {width: 2.5rem; position: absolute; margin-left: 53rem; align-self: center;}
 svg:hover{cursor: pointer;}
+
+@media only screen and (max-width: 1024px) {
+    form {margin-top: 2.5em;}
+    input[type="text"] {width: 45rem;}
+    svg {margin-left: 42rem;}
+}
+
+@media only screen and (max-width: 415px) {
+    main, .back {height: 100vh;}
+    form {margin-top: -10rem;}
+    input[type="text"] {width: 37rem; background-color: rgba(255, 255, 255, .8); font-size: 1.6rem;}
+    svg {margin-left: 34rem;}
+}
+
+@media only screen and (max-width: 376px) {
+    input[type="text"] {width: 30rem;}
+    form {margin-top: -20rem;}
+    svg {margin-left: 26rem;}
+}

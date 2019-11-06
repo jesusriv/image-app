@@ -11,3 +11,9 @@ body, html {
     background-color: #f2f2f2;
     height: 100vh;
 }
+
+*:focus {outline: none;}
+
+@media only screen and (min-width: 1366px) {
+    body, html {background-color: white;}
+}

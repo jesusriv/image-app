@@ -11,13 +11,15 @@ import { AppComponent } from './app.component';
 import { ImagesComponent } from './components/images/images.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
 import { LandingComponent } from './components/landing/landing.component';
+import { ExploreComponent } from './components/explore/explore.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ImagesComponent,
     WelcomeComponent,
-    LandingComponent
+    LandingComponent,
+    ExploreComponent
   ],
   imports: [
     BrowserModule,
