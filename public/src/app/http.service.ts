@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class HttpService {
   pageNum: number = 0;
-  url: string = `https://api.unsplash.com/search/photos?page=${this.pageNum}&per_page=30&orientation=portrait&order_by=popular&query=`;
+  url: string = `https://api.unsplash.com/search/photos?page=${this.pageNum}&per_page=30&orientation=portrait&landscape&order_by=popular&query=`;
   headers: Object = {
     headers: {
     "Authorization": "Client-ID 0050c8dd5d5c6700d604024d74f5533cdaa9f1412cbdcdfa9e1997b7169421cb"
