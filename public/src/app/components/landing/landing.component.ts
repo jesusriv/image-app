@@ -15,6 +15,7 @@ export class LandingComponent implements OnInit {
 
   ngOnInit() {
     this.query = { keyword: ''}
+    this._stateService.header();
   }
 
   search() {
@@ -25,6 +26,8 @@ export class LandingComponent implements OnInit {
       }
       const newArr = this.shuffle(d['results']);
       this._stateService.getData(newArr);
+      this._stateService.header();
+      this._stateService.fromExplore(true);
       this._router.navigate(['/images']);
     });
   }

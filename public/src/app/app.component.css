@@ -6,7 +6,10 @@ footer {
 }
 footer nav { justify-content: center; align-items: center; font-size: 1.6rem;}
 
-nav {width: 136.6rem; padding: 0 2.4rem; height: 5rem; align-self: flex-end; display: flex; justify-content: space-between;}
+nav {
+    width: 136.6rem; 
+    z-index: 20;
+    padding: 0 2.4rem; height: 5rem; align-self: flex-end; display: flex; justify-content: space-between;}
 
 .nav-btns {width: 20rem; display: flex; justify-content: space-around;}
 
@@ -18,17 +21,16 @@ nav a {
     text-transform: uppercase; 
     font-weight: 600;
     color: #ffffff;
-    background-color: rgb(79, 144, 177);
+    background-color: rgba(0, 0, 0, 0);
     display: flex;
     justify-content: center;
     align-items: center;
     height: 3.5rem;
     border-radius: .3rem;
-    padding: 0 1rem;
-
+    padding: 0 1rem
 }
 #norm {border: none; background-color: rgb(19, 46, 59);}
-
+.noFill {background-color: rgba(0, 0, 0, 0); z-index: 10;}
 @media only screen and (min-width: 128rem) {
     nav {width: 128rem;}
 }
