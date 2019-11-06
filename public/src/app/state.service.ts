@@ -5,6 +5,9 @@ import { Injectable } from '@angular/core';
 })
 export class StateService {
   imageData: any;
+  explore: boolean = false;
+  head: boolean = false;
+
   constructor() { }
 
   getData(data: any) {
@@ -13,5 +16,14 @@ export class StateService {
 
   provideData() {
     return this.imageData;
+  }
+
+  fromExplore(bool):void {
+    this.explore = bool;
+  }
+
+  header() {
+    this.head != this.head;
+    return this.head;
   }
 }
