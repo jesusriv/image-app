@@ -11,16 +11,23 @@ main  {
 /* .img-container {width: 35rem} */
 
 .img-footer {
+    position: relative;
     width: 100%;
-    display: flex;
+    display: none;
     justify-content: space-between;
     padding: 1rem 0;
+    margin-top: -5.7rem;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.89));
+    z-index: 10;
 }
+.img-container:hover > .img-footer {display: flex;}
 
 .left {display: flex; align-items: center;}
-.left p {font-size: 1.6rem; color: #4a4a4a}
+.left p {font-size: 1.6rem; color: white}
 .left a {text-decoration: none;}
-.right {margin-right: .3rem;}
+.right {margin-right: .3rem; display: flex; align-items: center; width: 7rem; justify-content: space-between;}
+.right p {font-size: 2rem; font-weight: 200; padding-bottom: .5rem; color: white}
+.right a:hover {cursor: pointer;}
 
 svg {width: 3rem; height: 3rem; margin-left: .3rem;}
 
@@ -74,6 +81,7 @@ img {max-width: 100%;}
 }
 
 @media only screen and (max-width: 500px) {
+    .img-footer {display: flex;}
     h2 {
         width: max-content;
         margin: 0 auto;

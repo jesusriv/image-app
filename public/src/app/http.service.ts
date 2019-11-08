@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class HttpService {
   pageNum: number = 0;
+  query: string;
   url: string = `https://api.unsplash.com/search/photos?page=${this.pageNum}&per_page=30&orientation=portrait&landscape&order_by=popular&query=`;
   headers: Object = {
     headers: {
@@ -15,9 +16,23 @@ export class HttpService {
 
   constructor(private _http: HttpClient) { }
 
-  getImagesWithQuery(query: string, page: number) {
+  public getImagesWithQuery(query: string, page: number) {
+    this.query = query;
     this.pageNum = page;
     this.url += query;
     return this._http.get(this.url, this.headers);
+  }
+
+  public getRandomImages() {
+    return this._http.get(`https://api.unsplash.com/collections?&per_page=30`, this.headers)
+  }
+
+  public getImagesWithPageNumber(page) {
+    let url: string = `https://api.unsplash.com/search/photos?page=${page}&per_page=30&orientation=portrait&landscape&order_by=popular&query=${this.query}`;
+    return this._http.get(url, this.headers);
+  }
+
+  public getRelatedCollections(id) {
+    return this._http.get(`https://api.unsplash.com/photos/random?count=30`, this.headers)
   }
 }
