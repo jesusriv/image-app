@@ -19,7 +19,7 @@ export class LandingComponent implements OnInit {
     private _localStorage: LocalStorageService,) { }
 
   ngOnInit() {
-    this.query = { keyword: ''}
+    this.query = { 'keyword': ''}
     this._stateService.header();
   }
 
