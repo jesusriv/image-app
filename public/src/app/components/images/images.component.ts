@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { LocalStorageService } from 'src/app/local-storage.service';
 import { Router } from '@angular/router'
+import { HttpService } from '../../http.service';
 import { StateService } from '../../state.service';
 
 @Component({
@@ -11,35 +12,65 @@ import { StateService } from '../../state.service';
 export class ImagesComponent implements OnInit, OnDestroy {
   images: any;
   oneImage: string;
+  pages: number;
+  
 
   constructor(
     private _router: Router, 
     private _stateService: StateService,
-    private _localStorage: LocalStorageService) { }
+    private _localStorage: LocalStorageService,
+    private _http: HttpService) { }
 
   ngOnInit() {
-    console.log(this._stateService.explore)
-    if (this._stateService.explore == false) {
-      // console.log(this._stateService.explore)
-      this.getImages();
+    if (!this._stateService.landing) {
       if(!this._localStorage.getFromStorage()) {
         this._router.navigate(['/welcome']);
+      } else {
+        this.getImages();
+        this.getPages();
+        if (!this._localStorage.returnAppended()) {
+          this.fetchMoreImages()
+          this._localStorage.appended(true);
+        }
       }
     } else {
-      console.log("hello")
+      this.pages = this._stateService.pages;
       this.images = this._stateService.provideData();
+      this.fetchMoreImages();
+      this.images = this.shuffle(this.images);
     }
+  }
+  
+  ngOnDestroy() {
+    if(this._stateService.landing) {
+      this._stateService.fromLanding(false);
+    }
+  }
+  
+  getImages():void {
+    this.images = this._localStorage.getFromStorage();
     this.images = this.shuffle(this.images);
   }
 
-  ngOnDestroy() {
-    if(this._stateService.explore) {
-      this._stateService.fromExplore(false);
-    }
+  getPages():void {
+    this.pages = this._localStorage.returnPages();
   }
-
-  getImages():void {
-    this.images = this._localStorage.getFromStorage();
+  
+  fetchMoreImages():void {
+    let page = Math.floor(Math.random() * this.pages);
+    this._http.getImagesWithPageNumber(page)
+      .toPromise()
+      .then(d => {
+        this.images = this.images.concat(d['results']);
+      })
+      .then(() => {
+        let page = Math.floor(Math.random() * this.pages);
+        this._http.getImagesWithPageNumber(page)
+          .toPromise()
+          .then(d => {
+            this.images = this.images.concat(d['results']);
+          }).catch(err => console.log(err));
+      }).catch(err => console.log(err));
   }
 
   viewImage(e: any):void {

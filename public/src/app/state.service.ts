@@ -5,25 +5,27 @@ import { Injectable } from '@angular/core';
 })
 export class StateService {
   imageData: any;
-  explore: boolean = false;
   head: boolean = false;
+  landing: boolean = false;
+  pages: number;
 
   constructor() { }
 
-  getData(data: any) {
+  setData(data: any, pages: number) {
     this.imageData = data;
+    this.pages = pages;
   }
 
   provideData() {
     return this.imageData;
   }
 
-  fromExplore(bool):void {
-    this.explore = bool;
-  }
-
   header() {
     this.head != this.head;
     return this.head;
+  }
+
+  fromLanding(bool):void {
+    this.landing = bool;
   }
 }

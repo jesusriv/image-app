@@ -1,1 +1,34 @@
-<p>explore works!</p>
+<main *ngIf="images"> 
+    <div *ngFor="let image of images" class="img-container">
+        <img (click)="viewImage($event)" src="{{ image.cover_photo.urls.regular }}" alt="">
+        <div class="img-footer">
+            <div class="left">
+                <div class="profile-image">
+                    <img  src="{{ image.cover_photo.user.profile_image.large }}" alt="{{ image.alt_description }}">
+                </div>
+                <a href="https://www.instagram.com/{{ image.cover_photo.user.instagram_username }}">
+                    <p>{{ image.user.name }}</p></a>
+            </div>
+            <div class="right">
+                    <p>{{ image.cover_photo.likes }}</p>
+                    <a >
+                            <svg (click)="like()" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                <path fill="none" stroke="#fff" stroke-width="20" d="M256 448l-30.164-27.211C118.718 322.442 48 258.61 48 179.095 48 114.221 97.918 64 162.4 64c36.399 0 70.717 16.742 93.6 43.947C278.882 80.742 313.199 64 349.6 64 414.082 64 464 114.221 464 179.095c0 79.516-70.719 143.348-177.836 241.694L256 448z"/>
+                            </svg>
+                    </a>
+            </div>
+        </div>
+    </div>
+</main>
+<div class="modal" *ngIf="oneImage">
+    <div class="modal-content">
+        <svg (click)="close()" xmlns="http://www.w3.org/2000/svg" width="96.554" height="97.517" viewBox="0 0 96.554 97.517">
+            <g id="x" transform="translate(-76.723 -80.742)">
+                <line id="Line_5" data-name="Line 5" x2="93" y2="94" transform="translate(78.5 82.5)" fill="none" stroke="#fff" stroke-width="5"/>
+                <line id="Line_6" data-name="Line 6" y1="94" x2="93" transform="translate(78.5 82.5)" fill="none" stroke="#fff" stroke-width="5"/>
+            </g>
+            </svg>
+            
+        <img src="{{oneImage}}" alt="">
+    </div>
+</div>

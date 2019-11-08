@@ -4,16 +4,18 @@ footer {
     position: absolute;
     bottom: 0;
 }
-footer nav { justify-content: center; align-items: center; font-size: 1.6rem;}
+#icon {width: 3.6rem; height: 3.5rem; margin-right: 1rem;}
+.heading {width: 20rem; display: flex;}
+footer nav { justify-content: center; font-size: 1.6rem;}
 
 nav {
     width: 136.6rem; 
     z-index: 20;
     padding: 0 2.4rem; height: 5rem; align-self: flex-end; display: flex; justify-content: space-between;}
 
-.nav-btns {width: 20rem; display: flex; justify-content: space-around;}
+.nav-btns {width: 40rem; display: flex; justify-content: space-around;}
 #hamburger {display: none;}
-h2 {display: inline-block; font-size: 2.4rem;}
+h2 {display: inline-block; font-size: 2.4rem; margin-top: .3rem;}
 h2:hover {cursor: pointer;}
 
 nav a {
@@ -38,7 +40,7 @@ nav a {
     nav {width: 128rem;}
 }
 
-@media only screen and (max-width: 414px) {
+@media only screen and (max-width: 650px) {
     .nav-btns {display: none;}
     #hamburger {display: block; width: 3rem; height: 3rem;}
 }

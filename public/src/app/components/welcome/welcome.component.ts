@@ -47,8 +47,8 @@ export class WelcomeComponent implements OnInit {
 
   send() {
     let page = Math.floor(Math.random() * 100);
-    this._http.getImagesWithQuery(this.queries.join(', ').toLowerCase(), page).subscribe(d => {
-      this._localStorage.storeOnLocalStorage(d['results']);
+    this._http.getImagesWithQuery(this.queries.join(',').toLowerCase(), page).subscribe(d => {
+      this._localStorage.storeOnLocalStorage(d);
       this._router.navigate(['/images']);
     });
   }
