@@ -9,7 +9,7 @@ import { Local } from 'protractor/built/driverProviders';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'Image App';
+  title = 'Image Splash';
   noFill: string;
 
   constructor(private _stateService: StateService, private _localStorage: LocalStorageService) {}

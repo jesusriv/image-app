@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { StorageServiceModule } from "ngx-webstorage-service";
 import { LocalStorageService } from './local-storage.service';
 
@@ -25,7 +25,7 @@ import { ExploreComponent } from './components/explore/explore.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule,
+    ReactiveFormsModule,
     StorageServiceModule
   ],
   providers: [HttpService, LocalStorageService],
