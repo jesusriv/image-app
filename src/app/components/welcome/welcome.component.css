@@ -13,6 +13,7 @@ main {width: 100%; display: flex; justify-content: center; margin-top: 2.5rem; h
     grid-template-columns: 1fr 1fr 1fr 1fr; 
     margin: 1.2rem auto 0 auto;
 }
+
 .option {
     width: 10rem; 
     height: 10rem; 

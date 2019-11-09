@@ -35,6 +35,10 @@ nav a {
 /* #mobile-menu {display: none} */
 .mobile-menu {
     display: none;
+}
+
+.menu {
+    display: flex;
     flex-direction: column;
     position: absolute;
     width: 100vw;
@@ -42,10 +46,6 @@ nav a {
     background: linear-gradient(to bottom right, rgba(180, 106, 125, 0.95), rgba(50, 90, 105, 0.97));
     z-index: 10;
     padding-top: 6.4rem;
-}
-
-.menu {
-    display: flex;
 }
 
 .menu a {

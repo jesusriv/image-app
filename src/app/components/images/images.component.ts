@@ -22,6 +22,10 @@ export class ImagesComponent implements OnInit, OnDestroy {
     private _http: HttpService) { }
 
   ngOnInit() {
+    document.getElementById('modal').className = 'mobile-menu';
+    document.body.setAttribute('class', '');
+    document.body.parentElement.setAttribute('class', '');
+    
     if (!this._stateService.landing) {
       if(!this._localStorage.getFromStorage()) {
         this._router.navigate(['/welcome']);

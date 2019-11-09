@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { StateService } from './state.service';
-import { LocalStorageService } from 'src/app/local-storage.service';
-import { Local } from 'protractor/built/driverProviders';
 
 @Component({
   selector: 'app-root',
@@ -12,19 +10,23 @@ export class AppComponent implements OnInit {
   title = 'Image Splash';
   noFill: string;
 
-  constructor(private _stateService: StateService, private _localStorage: LocalStorageService) {}
+  constructor(private _stateService: StateService) {}
 
   ngOnInit() {
+    console.log(document)
     this._stateService.header() ? this.noFill = "noFill" : this.noFill = "";
   }
 
-  open(e) {
-    e.srcElement.parentElement.parentElement.parentElement.children[1].className += " menu";
+  open() {
+    document.body.setAttribute('class', 'hidden  relative');
+    document.body.parentElement.setAttribute('class', 'hidden');
+    document.body.setAttribute('class', 'relative');
+    document.getElementById('modal').className = "menu";
   }
 
-  close(e) {
-    let c = e.srcElement.parentElement.className;
-    let s = c.split(' ').splice(0, 1).join('');
-    e.srcElement.parentElement.className = s;
+  close() {
+    document.body.setAttribute('class', '');
+    document.body.parentElement.setAttribute('class', '');
+    document.getElementById('modal').className = "mobile-menu";
   }
 }

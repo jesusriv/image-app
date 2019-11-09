@@ -16,6 +16,9 @@ export class ExploreComponent implements OnInit {
 
   ngOnInit() {
     this.explore();
+    document.getElementById('modal').className = 'mobile-menu';
+    document.body.setAttribute('class', '');
+    document.body.parentElement.setAttribute('class', '');
   }
 
   explore():void {
