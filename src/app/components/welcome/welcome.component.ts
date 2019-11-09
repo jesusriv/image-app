@@ -34,14 +34,38 @@ export class WelcomeComponent implements OnInit {
   }
 
   select(e: any) {
-    if (!this.clicked[e.originalTarget.firstChild.nodeValue]) {
-      e.originalTarget.className += this.clickedClass;
-      this.clicked[e.originalTarget.firstChild.nodeValue] = true;
-      this.queries.push(e.originalTarget.firstChild.nodeValue);
+    console.log(e)
+    if(e.path) {
+      if (!this.clicked[e.path[0].childNodes[0].data]) {
+        e.path[0].className += this.clickedClass;
+        this.clicked[e.path[0].childNodes[0].data] = true;
+        this.queries.push(e.path[0].childNodes[0].data);
+      } else {
+        this.clicked[e.path[0].childNodes[0].data] = false;
+        e.path[0].className = 'option';
+        this.queries.splice(this.queries.indexOf(e.path[0].childNodes[0].data), 1);
+      }
+    } else if (e.srcElement){
+      if (!this.clicked[e.srcElement.childNodes[0]]) {
+        e.srcElement.className += this.clickedClass;
+        this.clicked[e.srcElement.childNodes[0]] = true;
+        this.queries.push(e.srcElement.childNodes[0]);
+      } else {
+        this.clicked[e.srcElement.childNodes[0]] = false;
+        e.srcElement.className = 'option';
+        this.queries.splice(this.queries.indexOf(e.srcElement.childNodes[0]), 1);
+      }
     } else {
-      this.clicked[e.originalTarget.firstChild.nodeValue] = false;
-      e.originalTarget.className = 'option';
-      this.queries.splice(this.queries.indexOf(e.originalTarget.firstChild.nodeValue), 1);
+      if (!this.clicked[e.originalTarget.firstChild.nodeValue]) {
+        
+        e.originalTarget.className += this.clickedClass;
+        this.clicked[e.originalTarget.firstChild.nodeValue] = true;
+        this.queries.push(e.originalTarget.firstChild.nodeValue);
+      } else {
+        this.clicked[e.originalTarget.firstChild.nodeValue] = false;
+        e.originalTarget.className = 'option';
+        this.queries.splice(this.queries.indexOf(e.originalTarget.firstChild.nodeValue), 1);
+      }
     }
   }
 

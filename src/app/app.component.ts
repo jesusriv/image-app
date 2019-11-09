@@ -17,4 +17,14 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this._stateService.header() ? this.noFill = "noFill" : this.noFill = "";
   }
+
+  open(e) {
+    e.srcElement.parentElement.parentElement.parentElement.children[1].className += " menu";
+  }
+
+  close(e) {
+    let c = e.srcElement.parentElement.className;
+    let s = c.split(' ').splice(0, 1).join('');
+    e.srcElement.parentElement.className = s;
+  }
 }
