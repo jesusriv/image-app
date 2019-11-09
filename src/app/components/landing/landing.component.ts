@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../../http.service';
 import { Router } from '@angular/router'
 import { StateService } from '../../state.service';
-import { LocalStorageService } from 'src/app/local-storage.service';
 import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
@@ -16,10 +15,13 @@ export class LandingComponent implements OnInit {
   constructor(
     private _http: HttpService, 
     private _stateService: StateService, 
-    private _router: Router,
-    private _localStorage: LocalStorageService,) { }
+    private _router: Router) { }
 
   ngOnInit() {
+    document.getElementById('modal').className = 'mobile-menu';
+    document.body.setAttribute('class', '');
+    document.body.parentElement.setAttribute('class', '');
+    
     this.query = new FormGroup({
       keyword: new FormControl('')
     });

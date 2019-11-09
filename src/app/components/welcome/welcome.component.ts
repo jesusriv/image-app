@@ -28,13 +28,15 @@ export class WelcomeComponent implements OnInit {
     private _localStorage: LocalStorageService) { }
 
   ngOnInit() {
+    document.getElementById('modal').className = 'mobile-menu';
+    document.body.setAttribute('class', '');
+    document.body.parentElement.setAttribute('class', '');
     if(this._localStorage.getFromStorage()) {
       this._router.navigate(['/images']);
     }
   }
 
   select(e: any) {
-    console.log(e)
     if(e.path) {
       if (!this.clicked[e.path[0].childNodes[0].data]) {
         e.path[0].className += this.clickedClass;
