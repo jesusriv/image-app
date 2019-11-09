@@ -78,10 +78,15 @@ export class ImagesComponent implements OnInit, OnDestroy {
   }
 
   viewImage(e: any):void {
+    document.body.setAttribute('class', 'hidden  relative');
+    document.body.parentElement.setAttribute('class', 'hidden');
+    document.body.setAttribute('class', 'relative');
     this.oneImage = e.originalTarget.src;
   }
 
   close():void {
+    document.body.setAttribute('class', '');
+    document.body.parentElement.setAttribute('class', '');
     this.oneImage = null;
   }
 
