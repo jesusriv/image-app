@@ -37,9 +37,10 @@ svg {width: 3rem; height: 3rem; margin-left: .3rem;}
 img {max-width: 100%;}
 
 .modal {
-    display: block; 
+    display: flex;
+    justify-content: center;
+    align-items: center; 
     position: fixed;
-    z-index: 1; 
     left: 0;
     top: 0;
     width: 100vw;
@@ -47,6 +48,7 @@ img {max-width: 100%;}
     overflow: auto; 
     background-color: rgb(0,0,0); 
     background-color: rgba(0,0,0,0.4); 
+    z-index: 13;
 }
 
 .modal-content {
@@ -54,6 +56,7 @@ img {max-width: 100%;}
     margin: .7rem auto; 
     padding: 1.5rem;
     width: 45rem;
+    z-index: 14;
 }
 
 .modal-content img {max-width: 100%}
