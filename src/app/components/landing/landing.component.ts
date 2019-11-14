@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpService } from '../../http.service';
 import { Router } from '@angular/router'
 import { StateService } from '../../state.service';
@@ -9,7 +9,7 @@ import { FormControl, FormGroup } from '@angular/forms';
   templateUrl: './landing.component.html',
   styleUrls: ['./landing.component.css']
 })
-export class LandingComponent implements OnInit {
+export class LandingComponent implements OnInit, OnDestroy {
   query: any;
 
   constructor(
@@ -28,6 +28,10 @@ export class LandingComponent implements OnInit {
     this._stateService.header();
   }
 
+  ngOnDestroy() {
+    this._stateService.header();
+  }
+
   search() {
     let page = Math.floor(Math.random() * 10);
     this._http.getImagesWithQuery(this.query.value['keyword'].toLowerCase(), page).subscribe(d => {
@@ -35,7 +39,6 @@ export class LandingComponent implements OnInit {
         return this.query = { keyword: 'Oops.. nothing there'}
       }
       this._stateService.setData(d['results'], d['total_pages']);
-      this._stateService.header();
       this._stateService.fromLanding(true);
       this._router.navigate(['/images']);
     });
