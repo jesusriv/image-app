@@ -10,7 +10,7 @@ import { StateService } from '../../state.service';
   styleUrls: ['./images.component.css']
 })
 export class ImagesComponent implements OnInit, OnDestroy {
-  images: any;
+  images: Array<Object>;
   oneImage: string;
   pages: number;
   
@@ -22,10 +22,6 @@ export class ImagesComponent implements OnInit, OnDestroy {
     private _http: HttpService) { }
 
   ngOnInit() {
-    document.getElementById('modal').className = 'mobile-menu';
-    document.body.setAttribute('class', '');
-    document.body.parentElement.setAttribute('class', '');
-    
     if (!this._stateService.landing) {
       if(!this._localStorage.getFromStorage()) {
         this._router.navigate(['/welcome']);
@@ -33,12 +29,14 @@ export class ImagesComponent implements OnInit, OnDestroy {
         this.getImages();
         this.getPages();
         if (!this._localStorage.returnAppended()) {
-          this.fetchMoreImages()
+          this.fetchMoreImages();
           this._localStorage.appended(true);
         }
       }
     } else {
+      console.log("Hello")
       this.pages = this._stateService.pages;
+      this.images = [];
       this.images = this._stateService.provideData();
       this.fetchMoreImages();
       this.images = this.shuffle(this.images);
@@ -49,6 +47,9 @@ export class ImagesComponent implements OnInit, OnDestroy {
     if(this._stateService.landing) {
       this._stateService.fromLanding(false);
     }
+    document.getElementById('modal').className = 'mobile-menu';
+    document.body.setAttribute('class', '');
+    document.body.parentElement.setAttribute('class', '');
   }
   
   getImages():void {

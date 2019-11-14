@@ -39,7 +39,7 @@ img {max-width: 100%;}
     position: fixed;
     justify-content: center;
     align-items: center;
-    z-index: 13; 
+    z-index: 100; 
     left: 0;
     top: 0;
     width: 100vw;
@@ -54,7 +54,7 @@ img {max-width: 100%;}
     margin: .7rem auto; 
     padding: 1.5rem;
     width: 45rem;
-    z-index: 14;
+    z-index: 101;
 }
 
 .modal-content img {max-width: 100%}
