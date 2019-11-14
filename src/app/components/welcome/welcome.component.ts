@@ -10,14 +10,14 @@ import { LocalStorageService } from 'src/app/local-storage.service';
 })
 export class WelcomeComponent implements OnInit {
   options: string[] = [
-    'Home', 
-    'Fashion', 
-    'Make Up', 
-    'Gym', 
+    'Decor', 
+    'Los Angeles', 
+    'Fitness', 
+    'Arts', 
     'New York', 
-    'Technology', 
-    'Halloween',
-    'Outdoors'
+    'Photography', 
+    'Music',
+    'Europe'
   ];
   clickedClass: string  = " clicked";
   queries: string[] = [];
@@ -48,18 +48,17 @@ export class WelcomeComponent implements OnInit {
         this.queries.splice(this.queries.indexOf(e.path[0].childNodes[0].data), 1);
       }
     } else if (e.srcElement){
-      if (!this.clicked[e.srcElement.childNodes[0]]) {
+      if (!this.clicked[e.srcElement.innerText]) {
         e.srcElement.className += this.clickedClass;
-        this.clicked[e.srcElement.childNodes[0]] = true;
-        this.queries.push(e.srcElement.childNodes[0]);
+        this.clicked[e.srcElement.innerText] = true;
+        this.queries.push(e.srcElement.innerText);
       } else {
-        this.clicked[e.srcElement.childNodes[0]] = false;
+        this.clicked[e.srcElement.innerText] = false;
         e.srcElement.className = 'option';
-        this.queries.splice(this.queries.indexOf(e.srcElement.childNodes[0]), 1);
+        this.queries.splice(this.queries.indexOf(e.srcElement.innerText), 1);
       }
     } else {
       if (!this.clicked[e.originalTarget.firstChild.nodeValue]) {
-        
         e.originalTarget.className += this.clickedClass;
         this.clicked[e.originalTarget.firstChild.nodeValue] = true;
         this.queries.push(e.originalTarget.firstChild.nodeValue);
@@ -73,7 +72,9 @@ export class WelcomeComponent implements OnInit {
 
   send() {
     let page = Math.floor(Math.random() * 100);
-    this._http.getImagesWithQuery(this.queries.join(',').toLowerCase(), page).subscribe(d => {
+    let query = this.queries.join(',').toLocaleLowerCase().toString();
+    let url = `https://api.unsplash.com/search/photos?page=${page}&per_page=30&orientation=portrait&landscape&order_by=popular&query=${query}`;
+    this._http.getImagesWithUrl(url).subscribe(d => {
       this._localStorage.storeOnLocalStorage(d);
       this._router.navigate(['/images']);
     });

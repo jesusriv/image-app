@@ -18,6 +18,7 @@ export class LandingComponent implements OnInit, OnDestroy {
     private _router: Router) { }
 
   ngOnInit() {
+    this._stateService.setData(null, null);
     document.getElementById('modal').className = 'mobile-menu';
     document.body.setAttribute('class', '');
     document.body.parentElement.setAttribute('class', '');
@@ -34,9 +35,12 @@ export class LandingComponent implements OnInit, OnDestroy {
 
   search() {
     let page = Math.floor(Math.random() * 10);
-    this._http.getImagesWithQuery(this.query.value['keyword'].toLowerCase(), page).subscribe(d => {
+    let query = this.query.value['keyword'];
+    this._http.query = query;
+    let url = `https://api.unsplash.com/search/photos?page=${page}&per_page=30&orientation=portrait&landscape&order_by=popular&query=${query}`;
+    this._http.getImagesWithUrl(url).subscribe(d => {
       if (d['total'] == 0) {
-        return this.query = { keyword: 'Oops.. nothing there'}
+        return this.query = { keyword: new FormControl('Oops.. nothing there')}
       }
       this._stateService.setData(d['results'], d['total_pages']);
       this._stateService.fromLanding(true);

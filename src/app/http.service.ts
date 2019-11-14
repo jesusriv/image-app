@@ -5,9 +5,8 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class HttpService {
-  pageNum: number = 0;
   query: string;
-  url: string = `https://api.unsplash.com/search/photos?page=${this.pageNum}&per_page=30&orientation=portrait&landscape&order_by=popular&query=`;
+  pageNum: number = 0;
   headers: Object = {
     headers: {
     "Authorization": "Client-ID 0050c8dd5d5c6700d604024d74f5533cdaa9f1412cbdcdfa9e1997b7169421cb"
@@ -16,11 +15,9 @@ export class HttpService {
 
   constructor(private _http: HttpClient) { }
 
-  public getImagesWithQuery(query: string, page: number) {
-    this.query = query;
-    this.pageNum = page;
-    this.url += query;
-    return this._http.get(this.url, this.headers);
+  public getImagesWithUrl(url: string) {
+    console.log(url);
+    return this._http.get(url, this.headers);
   }
 
   public getRandomImages() {

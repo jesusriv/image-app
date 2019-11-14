@@ -23,6 +23,7 @@ export class ImagesComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     if (!this._stateService.landing) {
+      console.log("Hello")
       if(!this._localStorage.getFromStorage()) {
         this._router.navigate(['/welcome']);
       } else {
@@ -34,7 +35,6 @@ export class ImagesComponent implements OnInit, OnDestroy {
         }
       }
     } else {
-      console.log("Hello")
       this.pages = this._stateService.pages;
       this.images = [];
       this.images = this._stateService.provideData();
@@ -74,7 +74,8 @@ export class ImagesComponent implements OnInit, OnDestroy {
           .toPromise()
           .then(d => {
             this.images = this.images.concat(d['results']);
-          }).catch(err => console.log(err));
+          })
+          .then(() => this._http.query = null).catch(err => console.log(err));
       }).catch(err => console.log(err));
   }
 
