@@ -16,7 +16,6 @@ export class HttpService {
   constructor(private _http: HttpClient) { }
 
   public getImagesWithUrl(url: string) {
-    console.log(url);
     return this._http.get(url, this.headers);
   }
 
@@ -24,8 +23,8 @@ export class HttpService {
     return this._http.get(`https://api.unsplash.com/collections?&per_page=30`, this.headers)
   }
 
-  public getImagesWithPageNumber(page) {
-    let url: string = `https://api.unsplash.com/search/photos?page=${page}&per_page=30&orientation=portrait&landscape&order_by=popular&query=${this.query}`;
+  public getImagesWithPageNumber(page: number, query: string) {
+    let url: string = `https://api.unsplash.com/search/photos?page=${page}&per_page=30&orientation=portrait&landscape&order_by=popular&query=${query}`;
     return this._http.get(url, this.headers);
   }
 

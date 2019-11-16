@@ -7,7 +7,7 @@ import { LandingComponent } from './components/landing/landing.component';
 import { ExploreComponent } from './components/explore/explore.component';
 
 const routes: Routes = [
-  {path: 'images', component: ImagesComponent},
+  {path: 'images/:location', component: ImagesComponent},
   {path: 'welcome', component: WelcomeComponent},
   {path: 'explore', component: ExploreComponent},
   {path: 'search', component: LandingComponent},
