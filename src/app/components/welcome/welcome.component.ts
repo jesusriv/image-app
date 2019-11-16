@@ -10,13 +10,13 @@ import { LocalStorageService } from 'src/app/local-storage.service';
 })
 export class WelcomeComponent implements OnInit {
   options: string[] = [
-    'Decor', 
+    'Desert', 
     'Los Angeles', 
-    'Fitness', 
-    'Arts', 
+    'Hiking', 
+    'Travel', 
     'New York', 
     'Photography', 
-    'Music',
+    'Ocean',
     'Europe'
   ];
   clickedClass: string  = " clicked";
@@ -32,7 +32,7 @@ export class WelcomeComponent implements OnInit {
     document.body.setAttribute('class', '');
     document.body.parentElement.setAttribute('class', '');
     if(this._localStorage.getFromStorage()) {
-      this._router.navigate(['/images']);
+      this._router.navigate(['/images/dashboard']);
     }
   }
 
@@ -70,14 +70,27 @@ export class WelcomeComponent implements OnInit {
     }
   }
 
-  send() {
+  async send() {
     let page = Math.floor(Math.random() * 100);
     let query = this.queries.join(',').toLocaleLowerCase().toString();
+    let location = "dashboard"
     let url = `https://api.unsplash.com/search/photos?page=${page}&per_page=30&orientation=portrait&landscape&order_by=popular&query=${query}`;
-    this._http.getImagesWithUrl(url).subscribe(d => {
-      this._localStorage.storeOnLocalStorage(d);
-      this._router.navigate(['/images']);
-    });
+    let response = await this._http.getImagesWithUrl(url).toPromise()
+
+    this._localStorage.setPages(response['total_pages']);
+    let images = response['results'];
+    let fetch = await this.fetchMoreImages(query);
+    images = images.concat(fetch['results']);
+    fetch = await this.fetchMoreImages(query);
+    images = images.concat(fetch['results']);
+    this._localStorage.storeOnLocalStorage(images);
+    this._router.navigate(['/images/' + location ]);
+  }
+
+  async fetchMoreImages(query: string): Promise<Object> {
+    let page = Math.floor(Math.random() * this._localStorage.returnPages());
+    let data = await this._http.getImagesWithPageNumber(page, query).toPromise();
+    return data;
   }
 
 }

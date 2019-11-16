@@ -6,13 +6,15 @@ import { Injectable } from '@angular/core';
 export class StateService {
   imageData: any;
   head: boolean = false;
-  landing: boolean = false;
   pages: number;
 
   constructor() { }
 
-  setData(data: any, pages: number) {
+  setData(data: Object[]) {
     this.imageData = data;
+  }
+
+  setPages(pages: number) {
     this.pages = pages;
   }
 
@@ -20,12 +22,12 @@ export class StateService {
     return this.imageData;
   }
 
+  getPages() {
+    return this.pages;
+  }
+
   header() {
     this.head != this.head;
     return this.head;
-  }
-
-  fromLanding(bool):void {
-    this.landing = bool;
   }
 }

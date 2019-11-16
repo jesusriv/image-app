@@ -14,8 +14,11 @@ export class LocalStorageService {
   constructor(@Inject(LOCAL_STORAGE) private storage: StorageService) { }
   
   public storeOnLocalStorage(images: object): void {
-    this.pages = images['total_pages'];
-    this.storage.set(STORAGE_KEY, images['results']);
+    this.storage.set(STORAGE_KEY, images);
+  }
+
+  public setPages(pages: number) {
+    this.pages = pages;
   }
   
   public getFromStorage(): object[] {
